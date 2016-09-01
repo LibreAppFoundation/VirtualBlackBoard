@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,
+width=device-width, height=device-height, target-densitydpi=device-dpi"/>
+    <title>Virtual BlackBoard</title>
+    <link href="style/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="board-container">
+      <canvas id="board"></canvas>
+    </div>
+    <div id="controls">
+      <input class="control" type="color" id="chalk-color"/>
+      <span class="separator"></span>
+      <input class="control" type="color" id="board-color">
+      <span class="separator"></span>
+      <span class="control" id="eraser"><img src="img/eraser.png"></span>
+      <span class="separator"></span>
+      <span class="control" id="thickness-toggle">
+        <input type="range" class="slider" id="thickness" value="1" max="100" min="1">
+	      <canvas id="brush"></canvas>
+      </span>
+      <span class="separator"></span>
+      <span class="control" id="about"><img src="img/about.png"></span>
+    </div>
+    
+    <!-- About Dialog -->
+    <div id="popup-message-window">
+      <div id="popup-message-container">
+        <div id="popup-message">
+          <h4>Virtual BlackBoard</h4>
+          <p>Virtual BlackBoard is a simple drawing application for
+            educational purposes. It can work on different android, iOS
+            and windows mobile devices.</p>
+          <p id="copy">&copy;LibreApp Foundation</p>
+        </div>
+        <a id="close" onclick="close()">Close</a>
+      </div>
+    </div>
+    <!--script files-->
+    <script src="cordova.js"></script>
+    <script src="script/script.js"></script>  
+  </body>
+</html>
