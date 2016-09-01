@@ -61,7 +61,7 @@ function changeBoardColor() {
 function changeChalkColor() {
   var ctx = board.getContext('2d');
   ctx.strokeStyle = chalkColor.value;
-  
+  ctx.fillStyle = chalkColor.value;
   setThickness();
 }
 
@@ -91,6 +91,7 @@ window.onload = function() {
 
   ctx.lineCap = 'round';
   ctx.strokeStyle = "white";
+  ctx.fillStyle = "white";
   ctx.lineWidth = thickness.value * 2;
   
   // Event handlers
@@ -101,7 +102,6 @@ window.onload = function() {
   document.getElementById("thickness-toggle").onclick = function() {
     if (this.display == undefined || this.display == false) {
       this.display = true;
-      console.log(thickness);
       thickness.style.display = "block";
     } else {
       this.display = false;
@@ -152,9 +152,95 @@ window.onload = function() {
   document.getElementById("about").onclick = function() {
     document.getElementById("popup-message-window").style.display = "block";
   }
+  
+  // Touch screen events;
+  board.addEventListener("touchstart", handleStart, false);
+  board.addEventListener("touchend", handleEnd, false);
+  board.addEventListener("touchcancel", handleCancel, false);
+  board.addEventListener("touchmove", handleMove, false);
+  
+  var ongoingTouches = new Array();
+  
+  function handleStart(e) {
+    e.preventDefault();
+
+    var ctx = board.getContext("2d");
+    var touches = e.changedTouches;
+        
+    for (var i = 0; i < touches.length; i++) {
+      ongoingTouches.push(copyTouch(touches[i]));
+      ctx.beginPath();
+      ctx.arc(touches[i].pageX, touches[i].pageY, thickness.value, 0, 2 * Math.PI, false);  // a circle at the start
+      ctx.fill();
+    }
+  }
+  
+  function handleMove(e) {
+    e.preventDefault();
+
+    var ctx = board.getContext("2d");
+    var touches = e.changedTouches;
+
+    for (var i = 0; i < touches.length; i++) {
+      var idx = ongoingTouchIndexById(touches[i].identifier);
+
+      if (idx >= 0) {
+        ctx.beginPath();
+        ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
+        ctx.lineTo(touches[i].pageX, touches[i].pageY);
+        ctx.stroke();
+
+        ongoingTouches.splice(idx, 1, copyTouch(touches[i]));  // swap in the new touch record
+      } else {
+        console.log("can't figure out which touch to continue");
+      }
+    }
+  }
+  function handleEnd(e) {
+    e.preventDefault();
+
+    var ctx = board.getContext("2d");
+    var touches = e.changedTouches;
+
+    for (var i = 0; i < touches.length; i++) {
+      var idx = ongoingTouchIndexById(touches[i].identifier);
+
+      if (idx >= 0) {
+        ctx.beginPath();
+        ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
+        ctx.lineTo(touches[i].pageX, touches[i].pageY);
+        ctx.fillRect(touches[i].pageX - 4, touches[i].pageY - 4, 8, 8);  // and a square at the end
+        ongoingTouches.splice(idx, 1);  // remove it; we're done
+      } else {
+        console.log("can't figure out which touch to end");
+      }
+    }
+  }
+  
+  function handleCancel(e) {
+    e.preventDefault();
+    var touches = e.changedTouches;
+  
+    for (var i = 0; i < touches.length; i++) {
+      ongoingTouches.splice(i, 1);  // remove it; we're done
+    }
+  }
+
+  function copyTouch(touch) {
+    return { identifier: touch.identifier, pageX: touch.pageX, pageY: touch.pageY };
+  }
+
+  function ongoingTouchIndexById(idToFind) {
+    for (var i = 0; i < ongoingTouches.length; i++) {
+      var id = ongoingTouches[i].identifier;
+    
+      if (id == idToFind) {
+        return i;
+      }
+    }
+    return -1;    // not found
+  }
 }
-
-
 
 window.onresize = adjustCanvas;
 
