@@ -42,6 +42,7 @@ html, body {
 
 .control img {
   height: 100%;
+  max-width: 100%;
 }
 
 .control:hover {
@@ -115,7 +116,7 @@ html, body {
   font-weight: bold;
 }
 
-@media (max-width: 350px) {
+@media (max-width: 360px) {
   .controls {
     padding: 0;
     margin: 0;
