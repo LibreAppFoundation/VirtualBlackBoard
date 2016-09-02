@@ -28,6 +28,7 @@
   <preference name="target-device"        value="universal" />
   <preference name="fullscreen"         value="true" />
   <preference name="android-installLocation"  value="auto" />
+  <preference name="SplashScreen" value="splash" />
   <!--
     Define a specific version of PhoneGap to build into your app.
     <preference name="phonegap-version"     value="3.5.0" />
@@ -35,19 +36,19 @@
 
   <!-- Define app icon for each platform. -->
   <icon src="icon.png" />
-  <icon src="img/icons/mipmap-mdpi/ic_launcher.png"   platform="android"  gap:qualifier="mdpi" />
-  <icon src="img/icons/mipmap-hdpi/ic_launcher.png"   platform="android"  gap:qualifier="hdpi" />
-  <icon src="img/icons/mipmap-xhdpi/ic_launcher.png"   platform="android"  gap:qualifier="xhdpi" />
-  <icon src="img/icons/mipmap-xxhdpi/ic_launcher.png"   platform="android"  gap:qualifier="xxhdpi" />
-  <icon src="img/icons/mipmap-xxxhdpi/ic_launcher.png"   platform="android"  gap:qualifier="xxxhdpi" />
+  <icon src="img/icons/mipmap-mdpi/ic_launcher.png"   platform="android"  qualifier="mdpi" />
+  <icon src="img/icons/mipmap-hdpi/ic_launcher.png"   platform="android"  qualifier="hdpi" />
+  <icon src="img/icons/mipmap-xhdpi/ic_launcher.png"   platform="android"  qualifier="xhdpi" />
+  <icon src="img/icons/mipmap-xxhdpi/ic_launcher.png"   platform="android"  qualifier="xxhdpi" />
+  <icon src="img/icons/mipmap-xxxhdpi/ic_launcher.png"   platform="android"  qualifier="xxxhdpi" />
  
   <!-- Define app splash screen for each platform. -->
   <splash src="splash.png" />
-  <splash src="img/splash/drawable-mdpi/background.9.png"     platform="android" gap:qualifier="port-mdpi" />
-  <splash src="img/splash/drawable-hdpi/background.9.png"     platform="android" gap:qualifier="port-hdpi" />
-  <splash src="img/splash/drawable-xhdpi/background.9.png"     platform="android" gap:qualifier="port-xhdpi" />
-  <splash src="img/splash/drawable-xxhdpi/background.9.png"     platform="android" gap:qualifier="port-xxhdpi" />
-  <splash src="img/splash/drawable-xxxhdpi/background.9.png"     platform="android" gap:qualifier="port-xxxhdpi" />
+  <splash src="img/splash/drawable-mdpi/background.9.png"     platform="android" qualifier="port-mdpi" />
+  <splash src="img/splash/drawable-hdpi/background.9.png"     platform="android" qualifier="port-hdpi" />
+  <splash src="img/splash/drawable-xhdpi/background.9.png"     platform="android" qualifier="port-xhdpi" />
+  <splash src="img/splash/drawable-xxhdpi/background.9.png"     platform="android" qualifier="port-xxhdpi" />
+  <splash src="img/splash/drawable-xxxhdpi/background.9.png"     platform="android" qualifier="port-xxxhdpi" />
   
   <access origin="*"/>
   <allow-intent href="http://*/*" />
