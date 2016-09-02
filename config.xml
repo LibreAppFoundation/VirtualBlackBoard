@@ -71,4 +71,6 @@
   <platform name="android">
     <allow-intent href="market:*" />
   </platform>
+  
+  <plugin name="org.apache.cordova.splashscreen"  />
 </widget>
