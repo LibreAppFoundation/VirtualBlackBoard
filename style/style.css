@@ -3,6 +3,7 @@ html, body {
   padding: 0;
   height: 100%;
   overflow: hidden;
+  font-family: sans-serif;
 }
 
 #board {
@@ -22,6 +23,7 @@ html, body {
   width: 100%;
   max-width: 380px;
   cursor: default;
+  text-align: center;
 }
 
 .control {
@@ -29,12 +31,11 @@ html, body {
   height: 100%;
   max-height: 60px;
   padding: 0;
-  margin: 0;
   text-align: center;
   display: inline-block;
   vertical-align: middle;
-  border: 1px solid #2e6da4;
-  background: #337ab7;
+  border: 1px solid #ccc;
+  background: white;
   margin: 1px;
   border-radius: 5px;
   transition: background 0.5s ease;
@@ -46,12 +47,12 @@ html, body {
 }
 
 .control:hover {
-  background: #bbbbff;
+  background: #ddd;
   cursor: pointer;
 }
 
 .control:active {
- border: 1px solid #888;
+ background: #888;
 }
 #thickness {
   position: absolute;
@@ -70,14 +71,15 @@ html, body {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1050;
+  z-index: -1;
   overflow: hidden;
   text-align: center;
   outline: 0;
   background: rgba(255, 255, 255, 0.8);
   color: black;
   padding-top: 10%;
-  display: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 #popup-message-container {
@@ -90,10 +92,6 @@ html, body {
   max-width: 400px;
 }
 
-#popup-message {
-  font-family: sans-serif;
-}
-
 #close {
   border: 1px solid #2e6da4;
   background: #337ab7;
@@ -101,6 +99,7 @@ html, body {
   padding: 5px 10px;;
   margin-top: 10px;
   border-radius: 5px;
+  font-weight: bold;
 }
 
 #close:hover {
@@ -124,6 +123,6 @@ html, body {
   .control, .control:active {
     margin: 0;
     padding: 0;
-    border: none;
+    width: 17%;
   }
 }
